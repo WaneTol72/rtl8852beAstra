@@ -1,5 +1,4 @@
 # rtl8852beAstra
-# rtl8852beAstra
 ## Для работы rtl8852be на Astra с ядром линукс 5.15 и ниже:
 1. Разблокируем репозитории: 
 ```sudo nano /etc/apt/sources.list```
@@ -26,24 +25,15 @@
 ```sudo git clone https://github.com/HRex39/rtl8852be_bt.git```
 2. Переходим в папку: 
 ```cd rtl8852be_bt```
-3. Смотрим какой у нас адаптер через 
-```lsusb```
-В моём примере был такой вывод:
-```
-Bus 001 Device 003: ID 0bda:b85c Realtek Semiconductor Corp.
-```
-Запоминаем ```ID 0bda:b85c```
+3. Смотрим какой у нас адаптер через ```lsusb``` В моём примере был такой вывод, запоминаем ```ID 0bda:b85c```:
+> Bus 001 Device 003: ID 0bda:b85c Realtek Semiconductor Corp.
 4. Модифицируем файл btusb.c путём: 
 ```sudo nano btusb.c```
-ищем в нём такие строчки:
-```
-/* Realtek 8852BE Bluetooth devices */
+Где указаны ```(0x0bda, 0x4853)``` меняем их на то, что выдавала команда ```lsusb```  (в моём случае ```ID 0bda:b85c```), в моём случае я поменял эти значения на ```(0x0bda, 0xb85c)```, сохраняем файл:
+>/* Realtek 8852BE Bluetooth devices */
 { USB_DEVICE(0x0bda, 0x4853), .driver_info = BTUSB_REALTEK |
                BTUSB_WIDEBAND_SPEECH }
-```
-Где указаны ```(0x0bda, 0x4853)``` меняем их на то, что выдавала команда ```lsusb```  (в моём случае ```ID 0bda:b85c```), в моём случае я поменял эти значения на ```(0x0bda, 0xb85c)```, сохраняем файл.
-1. Устанавливаем мордашку для блютуза: ```sudo apt install blueman```
-2. Перезагружаем удобным способом (советую в окно нахуй выкинуть)
-3. Проверяем.
-4. ??? PROFIT
-
+5. Устанавливаем мордашку для блютуза: ```sudo apt install blueman```
+6. Перезагружаем удобным способом (советую в окно нахуй выкинуть)
+7. Проверяем.
+8. ??? PROFIT

@@ -33,7 +33,7 @@
 >/* Realtek 8852BE Bluetooth devices */
 { USB_DEVICE(0x0bda, 0x4853), .driver_info = BTUSB_REALTEK |
                BTUSB_WIDEBAND_SPEECH }
-5. Устанавливаем драйвер ```make```, ```sudo make install```
+5. Устанавливаем драйвер ```sudo make```, ```sudo make install```
 6. Устанавливаем мордашку для блютуза: ```sudo apt install blueman```
 7. Перезагружаем удобным способом.
 8. Проверяем.
